@@ -1,0 +1,126 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Modular Screensaver",
+        "description": "Richtet den Bildschirmschoner ein. Alle Inhalte stellst du danach unter „Konfigurieren“ ein."
+      }
+    },
+    "abort": {
+      "already_configured": "Modular Screensaver ist bereits eingerichtet.",
+      "single_instance_allowed": "Modular Screensaver ist bereits eingerichtet."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Modular Screensaver",
+        "menu_options": {
+          "general": "Allgemein (Zeit, Benutzer, Dashboards)",
+          "content": "Inhalt (Uhr, Wetter, Entitäten)",
+          "look": "Aussehen",
+          "display": "Display-Helligkeit & Nachtmodus"
+        }
+      },
+      "general": {
+        "title": "Allgemein",
+        "data": {
+          "idle_time": "Startet nach (Sekunden ohne Berührung)",
+          "users": "Nur für diese Benutzer",
+          "paths": "Nur auf diesen Dashboards"
+        },
+        "data_description": {
+          "users": "Leer = für alle Benutzer. Tipp: eigenen Benutzer für das Wand-Tablet anlegen und nur diesen auswählen.",
+          "paths": "Kommagetrennte URL-Anfänge, z. B. /dashboard-home, /wand-tablet. Leer = alle Dashboards (Einstellungsseiten sind immer ausgenommen)."
+        }
+      },
+      "content": {
+        "title": "Inhalt",
+        "data": {
+          "show_clock": "Uhr anzeigen",
+          "clock_24h": "24-Stunden-Format",
+          "show_seconds": "Sekunden anzeigen",
+          "show_date": "Datum anzeigen",
+          "weather_entity": "Wetter-Entität",
+          "show_forecast": "Vorhersage anzeigen",
+          "forecast_days": "Tage Vorhersage",
+          "entities": "Werte anzeigen (Entitäten)",
+          "alert_entities": "Hinweise (nur sichtbar, wenn aktiv)"
+        },
+        "data_description": {
+          "entities": "Werden als Kacheln mit Symbol, Name und Wert angezeigt.",
+          "alert_entities": "Z. B. Fenster, Türen, Rauchmelder oder DWD-Warnstufe. Erscheinen nur, wenn sie an/offen/ausgelöst bzw. > 0 sind."
+        }
+      },
+      "look": {
+        "title": "Aussehen",
+        "data": {
+          "background": "Hintergrund",
+          "background_image": "Bild-URL",
+          "accent_color": "Schriftfarbe",
+          "clock_size": "Größe der Uhr",
+          "soft_dim": "Zusätzlich abdunkeln (Software)",
+          "burn_in": "Einbrennschutz (Inhalt wandert langsam)"
+        },
+        "data_description": {
+          "background_image": "Nur bei Hintergrund „Bild“. Z. B. /local/screensaver.jpg (Datei in /config/www) oder eine https-Adresse.",
+          "soft_dim": "Für Geräte ohne steuerbare Display-Helligkeit."
+        }
+      },
+      "display": {
+        "title": "Display-Helligkeit & Nachtmodus",
+        "data": {
+          "display_entity": "Display-Licht-Entität",
+          "dim_brightness": "Helligkeit während Screensaver",
+          "normal_brightness": "Helligkeit bei Benutzung",
+          "night_start": "Nacht ab",
+          "night_end": "Nacht bis",
+          "night_action": "Nachts"
+        },
+        "data_description": {
+          "display_entity": "Optional, z. B. light.touchkio_walldisplay_display. Leer = Helligkeit wird nicht gesteuert.",
+          "dim_brightness": "0 % = Display ausschalten.",
+          "night_action": "Was nachts passiert, wenn der Screensaver startet."
+        }
+      }
+    }
+  },
+  "selector": {
+    "background": {
+      "options": {
+        "black": "Schwarz",
+        "gradient": "Dunkler Verlauf",
+        "image": "Bild"
+      }
+    },
+    "night_action": {
+      "options": {
+        "off": "Display ausschalten",
+        "dim": "Nur dimmen",
+        "none": "Nichts ändern"
+      }
+    }
+  },
+  "entity": {
+    "switch": {
+      "enabled": {
+        "name": "Aktiv"
+      }
+    },
+    "binary_sensor": {
+      "active": {
+        "name": "Sichtbar"
+      }
+    }
+  },
+  "services": {
+    "show": {
+      "name": "Screensaver anzeigen",
+      "description": "Zeigt den Screensaver sofort auf allen passenden Geräten."
+    },
+    "hide": {
+      "name": "Screensaver ausblenden",
+      "description": "Blendet den Screensaver auf allen Geräten aus (z. B. wenn es klingelt)."
+    }
+  }
+}

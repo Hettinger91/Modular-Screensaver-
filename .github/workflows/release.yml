@@ -1,0 +1,31 @@
+name: Release
+
+# Erstellt automatisch ein Release, sobald sich die Version in manifest.json ändert.
+on:
+  push:
+    branches: [main]
+    paths:
+      - custom_components/modular_screensaver/manifest.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Version lesen
+        id: v
+        run: echo "version=$(jq -r .version custom_components/modular_screensaver/manifest.json)" >> "$GITHUB_OUTPUT"
+      - name: Release erstellen (falls noch nicht vorhanden)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="v${{ steps.v.outputs.version }}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "$TAG existiert bereits"
+          else
+            gh release create "$TAG" --target "$GITHUB_SHA" --title "$TAG" --generate-notes
+          fi

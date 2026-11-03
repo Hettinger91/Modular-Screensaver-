@@ -1,0 +1,126 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Modular Screensaver",
+        "description": "Sets up the screensaver. Configure all content afterwards via “Configure”."
+      }
+    },
+    "abort": {
+      "already_configured": "Modular Screensaver is already set up.",
+      "single_instance_allowed": "Modular Screensaver is already set up."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Modular Screensaver",
+        "menu_options": {
+          "general": "General (time, users, dashboards)",
+          "content": "Content (clock, weather, entities)",
+          "look": "Appearance",
+          "display": "Display brightness & night mode"
+        }
+      },
+      "general": {
+        "title": "General",
+        "data": {
+          "idle_time": "Start after (seconds without touch)",
+          "users": "Only for these users",
+          "paths": "Only on these dashboards"
+        },
+        "data_description": {
+          "users": "Empty = all users. Tip: create a dedicated user for the wall tablet and select only that one.",
+          "paths": "Comma-separated URL prefixes, e.g. /dashboard-home, /wall-tablet. Empty = all dashboards (settings pages are always excluded)."
+        }
+      },
+      "content": {
+        "title": "Content",
+        "data": {
+          "show_clock": "Show clock",
+          "clock_24h": "24-hour format",
+          "show_seconds": "Show seconds",
+          "show_date": "Show date",
+          "weather_entity": "Weather entity",
+          "show_forecast": "Show forecast",
+          "forecast_days": "Forecast days",
+          "entities": "Show values (entities)",
+          "alert_entities": "Alerts (only visible when active)"
+        },
+        "data_description": {
+          "entities": "Shown as tiles with icon, name and value.",
+          "alert_entities": "E.g. windows, doors, smoke detectors. Only shown when on/open/triggered or > 0."
+        }
+      },
+      "look": {
+        "title": "Appearance",
+        "data": {
+          "background": "Background",
+          "background_image": "Image URL",
+          "accent_color": "Text color",
+          "clock_size": "Clock size",
+          "soft_dim": "Extra dimming (software)",
+          "burn_in": "Burn-in protection (content slowly moves)"
+        },
+        "data_description": {
+          "background_image": "Only for background “Image”. E.g. /local/screensaver.jpg (file in /config/www) or an https URL.",
+          "soft_dim": "For devices without controllable display brightness."
+        }
+      },
+      "display": {
+        "title": "Display brightness & night mode",
+        "data": {
+          "display_entity": "Display light entity",
+          "dim_brightness": "Brightness while screensaver is shown",
+          "normal_brightness": "Brightness when in use",
+          "night_start": "Night from",
+          "night_end": "Night until",
+          "night_action": "At night"
+        },
+        "data_description": {
+          "display_entity": "Optional. Empty = brightness is not controlled.",
+          "dim_brightness": "0 % = turn display off.",
+          "night_action": "What happens at night when the screensaver starts."
+        }
+      }
+    }
+  },
+  "selector": {
+    "background": {
+      "options": {
+        "black": "Black",
+        "gradient": "Dark gradient",
+        "image": "Image"
+      }
+    },
+    "night_action": {
+      "options": {
+        "off": "Turn display off",
+        "dim": "Dim only",
+        "none": "Do nothing"
+      }
+    }
+  },
+  "entity": {
+    "switch": {
+      "enabled": {
+        "name": "Enabled"
+      }
+    },
+    "binary_sensor": {
+      "active": {
+        "name": "Visible"
+      }
+    }
+  },
+  "services": {
+    "show": {
+      "name": "Show screensaver",
+      "description": "Shows the screensaver immediately on all matching devices."
+    },
+    "hide": {
+      "name": "Hide screensaver",
+      "description": "Hides the screensaver on all devices (e.g. when the doorbell rings)."
+    }
+  }
+}
